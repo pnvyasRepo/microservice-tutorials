@@ -20,15 +20,17 @@ public class DepartmentService {
 	private DepartmentRepository departmentRepository;
 
 	public Department saveDepartment(Department department) {
-		log.info("Calling saveDepartment service method."+department.toString());
+		log.info("Calling saveDepartment service method.");
 		return departmentRepository.save(department);
 	}
 
 	public List<Department> departmentList() {
+		log.info("Calling departmentList service method.");
 		return departmentRepository.findAll();
 	}
 
 	public Department findDepartmentById(Long departmentId) {
+		log.info("Calling findDepartmentById service method.");
 		return departmentRepository.findByDepartmentId(departmentId);
 	}
 	

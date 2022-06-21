@@ -20,19 +20,21 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DepartmentController {
 
-	//private static final Logger log = LoggerFactory.getLogger(DepartmentController.class);
+	// private static final Logger log =
+	// LoggerFactory.getLogger(DepartmentController.class);
 
 	@Autowired
 	private DepartmentService departmentService;
 
 	@PostMapping("/")
 	public Department saveDepartment(@RequestBody Department department) {
-		log.info("REST Controller: Calling saveDepartment API Endpoint.");
+		log.info("Calling saveDepartment API Endpoint.");
 		return departmentService.saveDepartment(department);
 	}
 
 	@GetMapping("/list")
 	public List<Department> departmentList(Long departmentId) {
+		log.info("Calling departmentList API Endpoint.");
 		return departmentService.departmentList();
 	}
 
