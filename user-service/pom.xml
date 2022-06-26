@@ -12,13 +12,12 @@
 
 	<groupId>com.apidesign</groupId>
 	<artifactId>user-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>user-service</name>
 	<description>user-service</description>
 
 	<properties>
 		<java.version>11</java.version>
-		<!-- <spring-cloud-version>Hoxton.SR8</spring-cloud-version> -->
 		<spring-cloud.version>2021.0.3</spring-cloud.version>
 	</properties>
 
@@ -84,11 +83,33 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- Docker plugin -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.13</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>pnvyas1327/user-service</repository>
+					<tag>${project.version}</tag>
+					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>javax.activation</groupId>
+						<artifactId>javax.activation-api</artifactId>
+						<version>1.2.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
 		</plugins>
 	</build>
-	<!-- <build> <plugins> <plugin> <groupId>org.springframework.boot</groupId> 
-		<artifactId>spring-boot-maven-plugin</artifactId> <configuration> <excludes> 
-		<exclude> <groupId>org.projectlombok</groupId> <artifactId>lombok</artifactId> 
-		</exclude> </excludes> </configuration> </plugin> </plugins> </build> -->
-
 </project>

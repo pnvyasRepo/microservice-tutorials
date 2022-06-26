@@ -1,0 +1,40 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: cloud-gateway-app
+  name: cloud-gateway-app
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: cloud-gateway-app
+  template: 
+    metadata: 
+      labels: 
+        app: cloud-gateway-app
+    spec: 
+      containers: 
+        - 
+          image: "pnvyas1327/cloud-gateway:0.0.1"
+          imagePullPolicy: Always
+          name: cloud-gateway-app
+          ports: 
+            - 
+              containerPort: 8081
+
+--- 
+apiVersion: v1
+kind: Service
+metadata: 
+  name: cloud-gateway-svc
+spec: 
+  ports: 
+    - 
+      port: 80
+      protocol: TCP
+      targetPort: 8081
+  selector: 
+    app: cloud-gateway-svc
+  type: LoadBalancer

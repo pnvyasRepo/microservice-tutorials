@@ -1,0 +1,38 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: department-service-app
+  name: department-service-app
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: department-service-app
+  template: 
+    metadata: 
+      labels: 
+        app: department-service-app
+    spec: 
+      containers: 
+        - 
+          image: "pnvyas1327/department-service:0.0.1"
+          imagePullPolicy: Always
+          name: department-service-app
+          ports: 
+            - 
+              containerPort: 9001
+--- 
+apiVersion: v1
+kind: Service
+metadata: 
+  name: department-service-svc
+spec: 
+  ports: 
+    - 
+      port: 80
+      targetPort: 9001
+  selector: 
+    app: department-service-svc
+  type: ClusterIP
